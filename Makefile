@@ -90,19 +90,14 @@ SRCX =	ft_get_next_line \
 		ft_strnjoin
 
 SRC_DIR =		src/
-SRC_FILES =		$(addsuffix .c, $(SRC))
-SRCS =			$(addprefix $(SRC_DIR), $(SRC_FILES))
-
-SRCX_DIR =		src/extra/
-SRCX_FILES =	$(addsuffix .c, $(SRCX))
-SRCSX =			$(addprefix $(SRCX_DIR), $(SRCX_FILES))
 
 OBJ_DIR =		obj/
-OBJ_FILES =		$(addsuffix .o, $(SRC) $(SRCX))
-OBJS =			$(addprefix $(OBJ_DIR), $(OBJ_FILES))
+OBJ_O =			$(addsuffix .o, $(SRC) $(SRCX))
+OBJ_FILES =		$(addprefix $(OBJ_DIR), $(OBJ_O))
 
-HDR_DIR =		-I includes
-HDR_FILES =		includes/libft.h
+HDR_DIR =		includes/
+HDR_H =			$(addsuffix .h, $(HDR))
+HDR_FILES =		$(addprefix $(HDR_DIR), $(HDR_H))
 
 C_FLAGS =		-Wall -Wextra -Werror
 
@@ -111,6 +106,7 @@ GREEN =				[32m
 BLUE =				[34m
 YELLOW =			[33m
 MAGENTA =			[35m
+CYAN =				[36m
 GREY =				[37m
 GREEN_LIGHT =		[92m
 YELLOW_LIGHT =		[93m
@@ -125,28 +121,28 @@ END_COLOUR =		\033[0m
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@echo "$(YELLOW)Compiling $(NAME)...$(END_COLOUR)"
-	@ar rc $(NAME) $(OBJS)
+$(NAME): $(OBJ_FILES)
+	@echo "$(YELLOW_LIGHT)$(NAME): $(YELLOW)Compiling $(NAME)...$(END_COLOUR)"
+	@ar rc $(NAME) $(OBJ_FILES)
 	@ranlib $(NAME)
-	@echo "$(GREEN)Successfully compiled $(NAME)!$(END_COLOUR)"
+	@echo "$(YELLOW_LIGHT)$(NAME): $(GREEN)Successfully compiled $(NAME)!$(END_COLOUR)"
 
-$(OBJS) : $(SRCS) $(SRCSX) $(HDR_FILES)
-	@mkdir -p obj
-	@gcc $(C_FLAGS) $(HDR_DIR) -c $< -o $@
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HDR_FILES)
+	@mkdir -p $(OBJ_DIR)
+	@gcc $(C_FLAGS) -I $(HDR_DIR) -c $+ -o $@
 
 force:
 	@true
 
 clean:
-	@echo "$(YELLOW)Cleaning objects...$(END_COLOUR)"
+	@echo "$(YELLOW_LIGHT)$(NAME): $(YELLOW)Cleaning library objects...$(END_COLOUR)"
 	@/bin/rm -rf $(OBJ_DIR)
-	@echo "$(GREEN)Successfully cleaned all objects!$(END_COLOUR)"
+	@echo "$(YELLOW_LIGHT)$(NAME): $(GREEN)Successfully cleaned library objects!$(END_COLOUR)"
 
 fclean: clean
-	@echo "$(YELLOW)Cleaning executable...$(END_COLOUR)"
+	@echo "$(YELLOW_LIGHT)$(NAME): $(YELLOW)Cleaning library...$(END_COLOUR)"
 	@/bin/rm -f $(NAME)
-	@echo "$(GREEN)Successfully cleaned everything!$(END_COLOUR)"
+	@echo "$(YELLOW_LIGHT)$(NAME): $(GREEN)Successfully cleaned library!$(END_COLOUR)"
 
 re:	fclean all
 
