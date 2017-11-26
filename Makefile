@@ -101,20 +101,20 @@ HDR_FILES =		$(addprefix $(HDR_DIR), $(HDR_H))
 
 C_FLAGS =		-Wall -Wextra -Werror
 
-RED =				[31m
-GREEN =				[32m
-BLUE =				[34m
-YELLOW =			[33m
-MAGENTA =			[35m
-CYAN =				[36m
-GREY =				[37m
-GREEN_LIGHT =		[92m
-YELLOW_LIGHT =		[93m
-YELLOW_BOLD =		[1;33m
-YELLOW_LIGHT_BOLD =	[1;93m
-MAGENTA_LIGHT =		[95m
-BLINK =				[5m
-GREEN_LIGHT_BLINK =	[5;92m
+RED =				\033[31m
+GREEN =				\033[32m
+BLUE =				\033[34m
+YELLOW =			\033[33m
+MAGENTA =			\033[35m
+CYAN =				\033[36m
+GREY =				\033[37m
+GREEN_LIGHT =		\033[92m
+YELLOW_LIGHT =		\033[93m
+YELLOW_BOLD =		\033[1;33m
+YELLOW_LIGHT_BOLD =	\033[1;93m
+MAGENTA_LIGHT =		\033[95m
+BLINK =				\033[5m
+GREEN_LIGHT_BLINK =	\033[5;92m
 END_COLOUR =		\033[0m
 
 .SILENT:
