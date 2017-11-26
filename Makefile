@@ -89,11 +89,11 @@ SRCX =	ft_get_next_line \
 		ft_ishex \
 		ft_strnjoin
 
-SRC_DIR =		./
+SRC_DIR =		src/
 SRC_FILES =		$(addsuffix .c, $(SRC))
 SRCS =			$(addprefix $(SRC_DIR), $(SRC_FILES))
 
-SRCX_DIR =		extra/
+SRCX_DIR =		src/extra/
 SRCX_FILES =	$(addsuffix .c, $(SRCX))
 SRCSX =			$(addprefix $(SRCX_DIR), $(SRCX_FILES))
 
